@@ -13,11 +13,13 @@ public class OrderFormatter {
     private Map<String, String> listDates;
     public String[] stayDates;
 
-    OrderInput orderInput = new OrderInput();
-    OrderInput.UserProfile userProfile = orderInput.new UserProfile();
+    OrderInput orderInput;
 
-    public void inputFormatter(String input) throws ParseException {
+
+    public void inputFormatter(String input, OrderInput orderInput) {
         String[] inputs = input.split(":");
+        this.orderInput = orderInput;
+        OrderInput.UserProfile userProfile = orderInput.new UserProfile();
         int i = 0;
         //		for(int i=0; i<=inputs.length;i++){
         userProfile.setCustomerType(CustomerType.getType(inputs[i++]));
@@ -27,21 +29,23 @@ public class OrderFormatter {
         }
         DayCalculatorService DCS = new DayCalculatorService();
 
-        userProfile.setListDates(DCS.dayCalculator(stayDates));
+        try {
+            userProfile.setListDates(DCS.dayCalculator(stayDates));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
-        orderInput.setUserProfile(userProfile);
+        this.orderInput.setUserProfile(userProfile);
     }
 
 
-    public void outputFormatter(HotelType leastPriceHotel) {
-        System.out.println(leastPriceHotel);
+    public void outputFormatter(HotelType minimumPriceHotel) {
+        System.out.println(minimumPriceHotel);
     }
 
     public String[] getStayDates() {
-        for (String string : stayDates) {
-            System.out.println(string);
-        }
+
         return stayDates;
 
     }

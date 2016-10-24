@@ -16,8 +16,8 @@ public static void main(String[] args) throws ParseException {
 	OrderInput orderInput = new OrderInput();
 	roomRates(orderInput);
 	Registration registration = new Registration();
-	String input= "REGULAR:16/03/2016,17/03/2016";
-	registration.calculatePrice(input);
+	String input= "REWARD:16/05/2016,17/05/2016";
+	registration.calculatePrice(input, orderInput);
 }
 
 private static void roomRates(OrderInput orderInput) {

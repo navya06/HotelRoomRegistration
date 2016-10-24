@@ -1,7 +1,6 @@
 package com.reservation.hotel.registration;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -21,32 +20,35 @@ public class CalculateBestPriceHotel implements ICalculateBestPriceHotel{
 	Map<HotelType, Integer> totalIndividualPrice = new HashMap<>();
 	private int currentHotelRating;
 	private int competitorHotelRating;
-	OrderFormatter orderFormatter = new OrderFormatter();
+	OrderFormatter orderFormatter;
+    OrderInput orderInput;
+    int individualHotelPrice=0;
 	
-	public void bestPrice(){
-		OrderInput orderInput = new OrderInput();
-		OrderInput.UserProfile userProfile = orderInput.new UserProfile();
+	public void bestPrice(OrderFormatter orderFormatter, OrderInput orderInput){
+		this.orderFormatter = orderFormatter;
+		 this.orderInput =orderInput;
+		OrderInput.UserProfile userProfile = orderInput.getUserProfile();
 		currentCustomerType = userProfile.getCustomerType();
 		listDate = userProfile.getListDates();
-		stayDates = orderFormatter.getStayDates();
+		stayDates = this.orderFormatter.getStayDates();
 		prices = orderInput.getCurrentPrices();
 		for (HotelType hotelType : HotelType.values()) {
-			totalIndividualPrice.put(hotelType, individualHotelPrice(hotelType));
+            individualHotelPrice=individualHotelPrice(hotelType);
+		    totalIndividualPrice.put(hotelType, individualHotelPrice);
 		}
 		
 		
-		orderFormatter.outputFormatter(calMinPriceHotel());
+		this.orderFormatter.outputFormatter(calMinPriceHotel());
 	}
 	public HotelType calMinPriceHotel() {
-		Map<HotelType, Integer> min = new HashMap<>();
-		Entry<HotelType, Integer> minEntry = (Entry<HotelType, Integer>) min.entrySet();
-		HotelType minEntryHotel = minEntry.getKey();
-		currentHotelRating = minEntryHotel.getRating();
-		
+		HotelType minimumPriceHotel=null;
+		int minimumHotelPrice=0;
+
 		for(Entry<HotelType, Integer> entry :totalIndividualPrice.entrySet())
-			if (min == null || ((Entry<HotelType, Integer>) min).getValue() > entry.getValue()) {
+			if (minimumHotelPrice == 0 || minimumHotelPrice > entry.getValue()) {
 //		        
-				min = (Map<HotelType, Integer>) entry;
+				minimumHotelPrice= entry.getValue();
+				minimumPriceHotel= entry.getKey();
 			}
 //		   else{
 //				if(((Entry<HotelType, Integer>) min).getValue() == entry.getValue()){	
@@ -58,7 +60,7 @@ public class CalculateBestPriceHotel implements ICalculateBestPriceHotel{
 //	        }
 //	        
 //				}
-		    return minEntryHotel;
+		    return minimumPriceHotel;
 		
 	}
 	
@@ -67,7 +69,7 @@ public class CalculateBestPriceHotel implements ICalculateBestPriceHotel{
 		for(String date: stayDates){
 			if(listDate.containsKey(date)){
 				String day = listDate.get(date);
-				if(day=="Monday"||day=="Tuesday"||day=="Wednesday"||day=="Thrusday"||day=="Friday")
+				if(day.equals("Monday")||day.equals("TUESDAY")||day.equals("WEDNESDAY")||day.equals("THRUSDAY")||day.equals("FRIDAY"))
 				{
 					DayType currentDayType = DayType.WEEKDAY;
 					totalHotelPrice+=dayCostCalculation(hotelType, currentDayType);

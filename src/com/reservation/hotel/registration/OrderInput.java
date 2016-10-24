@@ -7,7 +7,6 @@ import com.reservation.hotel.model.CustomerType;
 import com.reservation.hotel.model.DayType;
 import com.reservation.hotel.model.HotelRates;
 import com.reservation.hotel.model.HotelType;
-import com.reservation.hotel.registration.OrderInput.UserProfile;
 
 public class OrderInput {
 	private static UserProfile userProfile;
@@ -35,6 +34,10 @@ public class OrderInput {
 	public void setUserProfile(UserProfile userProfile) {
 		// TODO Auto-generated method stub
 		this.userProfile = userProfile;
+	}
+
+	public UserProfile getUserProfile(){
+		return userProfile;
 	}
 	
 	Map<HotelType, Map<CustomerType, Map<DayType, HotelRates>>> prices = new HashMap<>();

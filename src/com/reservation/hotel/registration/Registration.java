@@ -10,10 +10,10 @@ public class Registration {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void calculatePrice(String input) throws ParseException{
+	public void calculatePrice(String input, OrderInput orderInput) {
 	OrderFormatter orderFormatter = new OrderFormatter();
-	orderFormatter.inputFormatter(input);
+	orderFormatter.inputFormatter(input, orderInput);
 	CalculateBestPriceHotel calculateBestPriceHotel = new CalculateBestPriceHotel();
-	calculateBestPriceHotel.bestPrice();
+	calculateBestPriceHotel.bestPrice(orderFormatter, orderInput);
 	}
 }
