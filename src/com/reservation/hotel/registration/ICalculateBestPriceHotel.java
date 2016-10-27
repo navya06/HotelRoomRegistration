@@ -5,13 +5,11 @@ import com.reservation.hotel.model.HotelType;
 import com.reservation.hotel.model.OrderFormatter;
 
 public interface ICalculateBestPriceHotel {
-	
-	void bestPrice(OrderFormatter orderFormatter, OrderInput orderInput);
-	
-	HotelType calMinPriceHotel();
-	
-	int individualHotelPrice(HotelType hotelType);
-	
-	int dayCostCalculation(HotelType hotelType, DayType currentDayType);
-	
+
+    void bestPrice(OrderFormatter orderFormatter, OrderInput orderInput);
+
+    HotelType calculateMinimumPriceHotel();
+
+    int individualHotelPrice(HotelType hotelType);
+
 }

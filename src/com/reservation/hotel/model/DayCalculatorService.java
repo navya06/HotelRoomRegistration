@@ -13,12 +13,12 @@ public class DayCalculatorService {
     public Map<String, String> dayCalculator(String[] stayDates) throws ParseException {
         // TODO Auto-generated method stub
         Map<String, String> listDates = new HashMap<>();
-        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         for (String dates : stayDates) {
 
-            Date dt1 = format1.parse(dates);
-            DateFormat format2 = new SimpleDateFormat("EEEE");
-            String finalDay = format2.format(dt1);
+            Date date = simpleDateFormat.parse(dates);
+            DateFormat dateFormat = new SimpleDateFormat("EEEE");
+            String finalDay = dateFormat.format(date);
             listDates.put(dates, finalDay);
         }
         return listDates;

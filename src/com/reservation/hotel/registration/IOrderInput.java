@@ -9,10 +9,13 @@ import com.reservation.hotel.model.HotelType;
 import com.reservation.hotel.registration.OrderInput.UserProfile;
 
 public interface IOrderInput {
-	
-	void setUserProfile(UserProfile userProfile);
-	
-	void roomRates(HotelType hotelType, CustomerType customerType, DayType dayType, HotelRates hotelRates);
-	
-	Map<HotelType, Map<CustomerType, Map<DayType, HotelRates>>> getCurrentPrices();
+
+    void setUserProfile(UserProfile userProfile);
+
+    void roomRates(HotelType hotelType, CustomerType customerType, DayType dayType, HotelRates hotelRates);
+
+    Map<HotelType, Map<CustomerType, Map<DayType, Integer>>> getPrices();
+
+    int dayCostCalculation(HotelType hotelType, CustomerType customerType, DayType currentDayType);
+
 }

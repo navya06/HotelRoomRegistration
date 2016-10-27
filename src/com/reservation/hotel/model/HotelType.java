@@ -5,10 +5,6 @@ public enum HotelType {
     BRIDGEWOOD(4),
     RIDGEWOOD(5);
 
-    public static HotelType getType(String type) {
-        return HotelType.valueOf(type);
-    }
-
     int rating;
 
     HotelType(int rating) {
