@@ -17,9 +17,7 @@ public class OrderFormatter implements IOrderFormatter {
         int i = 0;
         userProfile.setCustomerType(CustomerType.getType(inputs[i++]));
         stayDates = inputs[i].split(",");
-        for (String string : stayDates) {
-            System.out.println(string);
-        }
+        userProfile.setStayDates(stayDates);
         DayCalculatorService DCS = new DayCalculatorService();
         try {
             userProfile.setListDates(DCS.dayCalculator(stayDates));
@@ -31,5 +29,4 @@ public class OrderFormatter implements IOrderFormatter {
     public void outputFormatter(HotelType minimumPriceHotel) {
         System.out.println(minimumPriceHotel);
     }
-    public String[] getStayDates() { return stayDates; }
 }

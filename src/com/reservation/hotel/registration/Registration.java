@@ -15,6 +15,7 @@ public class Registration {
         OrderFormatter orderFormatter = new OrderFormatter();
         orderFormatter.inputFormatter(input, orderInput);
         CalculateBestPriceHotel calculateBestPriceHotel = new CalculateBestPriceHotel();
-        calculateBestPriceHotel.bestPrice(orderFormatter, orderInput);
+        calculateBestPriceHotel.bestPrice(orderInput);
+
     }
 }

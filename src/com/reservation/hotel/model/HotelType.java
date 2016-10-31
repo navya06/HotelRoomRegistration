@@ -8,7 +8,6 @@ public enum HotelType {
     int rating;
 
     HotelType(int rating) {
-        // TODO Auto-generated constructor stub
         this.rating = rating;
     }
 

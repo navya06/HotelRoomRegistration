@@ -11,12 +11,12 @@ import com.reservation.hotel.registration.Registration;
 
 public class MainEntry {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
 
         OrderInput orderInput = new OrderInput();
         roomRates(orderInput);
         Registration registration = new Registration();
-        String input = "REWARD:16/05/2016,17/05/2016";
+        String input = "REGULAR:16/05/2016,17/05/2016";
         registration.calculatePrice(input, orderInput);
     }
 

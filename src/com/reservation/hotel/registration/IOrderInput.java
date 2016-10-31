@@ -16,6 +16,6 @@ public interface IOrderInput {
 
     Map<HotelType, Map<CustomerType, Map<DayType, Integer>>> getPrices();
 
-    int dayCostCalculation(HotelType hotelType, CustomerType customerType, DayType currentDayType);
+    Integer dayCostCalculation(HotelType hotelType, CustomerType customerType, DayType currentDayType);
 
 }

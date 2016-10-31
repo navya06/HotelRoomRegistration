@@ -8,13 +8,13 @@ import com.reservation.hotel.model.DayType;
 import com.reservation.hotel.model.HotelRates;
 import com.reservation.hotel.model.HotelType;
 
+
 public class OrderInput implements IOrderInput {
     private static UserProfile userProfile;
-
-
     public class UserProfile {
         private CustomerType currentCustomerType;
         private Map<String, String> listDates;
+        private String[] stayDates;
 
         public CustomerType getCustomerType() {
             return currentCustomerType;
@@ -31,6 +31,10 @@ public class OrderInput implements IOrderInput {
         public void setListDates(Map<String, String> listDates) {
             this.listDates = listDates;
         }
+
+        public void setStayDates(String[] stayDates) { this.stayDates=stayDates; }
+
+        public String[] getStayDates() { return stayDates; }
     }
 
     public void setUserProfile(UserProfile userProfile) {
@@ -83,4 +87,5 @@ public class OrderInput implements IOrderInput {
     public Map<HotelType, Map<CustomerType, Map<DayType, Integer>>> getPrices() {
         return prices;
     }
+
 }

@@ -9,19 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DayCalculatorService {
-
     public Map<String, String> dayCalculator(String[] stayDates) throws ParseException {
-        // TODO Auto-generated method stub
-        Map<String, String> listDates = new HashMap<>();
+        Map<String, String> listOfDates = new HashMap<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        for (String dates : stayDates) {
-
-            Date date = simpleDateFormat.parse(dates);
+        for (String currentDate : stayDates) {
+            Date date = simpleDateFormat.parse(currentDate);
             DateFormat dateFormat = new SimpleDateFormat("EEEE");
             String finalDay = dateFormat.format(date);
-            listDates.put(dates, finalDay);
+            listOfDates.put(currentDate, finalDay);
         }
-        return listDates;
+        return listOfDates;
     }
-
 }
